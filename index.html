@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PlanCo – Reutiliza el agua de tu lavadora</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;700&display=swap">
+<style>
+:root{color-scheme:light;--bg:#EEF3F4;--sf:#fff;--ink:#12303A;--mu:#4A6670;--ln:#CBD9DD;--br:#0E6F7E;--bi:#fff;--ok:#1B6B3C;--okb:#DDF0E3;--wa:#7A4F00;--wab:#FBEBC8;--no:#9B2323;--nob:#F8DADA}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0D1B20;--sf:#14272E;--ink:#E4EFF1;--mu:#9DB4BA;--ln:#26414A;--br:#4FC1D0;--bi:#06222A;--ok:#7FD6A0;--okb:#12331F;--wa:#F0C26A;--wab:#3A2B08;--no:#F29A9A;--nob:#3E1515}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0D1B20;--sf:#14272E;--ink:#E4EFF1;--mu:#9DB4BA;--ln:#26414A;--br:#4FC1D0;--bi:#06222A;--ok:#7FD6A0;--okb:#12331F;--wa:#F0C26A;--wab:#3A2B08;--no:#F29A9A;--nob:#3E1515}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--sf);z-index:10}
+h1,h2,h3{font-family:"Bricolage Grotesque",Figtree,system-ui,sans-serif;line-height:1.1;margin:0 0 .5em}
+h1{font-size:clamp(2rem,7vw,3.1rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:1.7rem;font-weight:800}h3{font-size:1.15rem;font-weight:600}
+p{margin:0 0 1em;max-width:62ch}
+a{color:var(--br)}
+:focus-visible{outline:3px solid var(--br);outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--sf);border-bottom:1px solid var(--ln)}
+.warn{background:var(--wab);color:var(--wa);font-size:14px;font-weight:700;padding:6px 16px;text-align:center}
+.bar{display:flex;align-items:center;gap:14px;padding:8px 16px;max-width:900px;margin:auto}
+.brand{font:800 1.3rem "Bricolage Grotesque",sans-serif;color:var(--br);text-decoration:none}
+nav{display:flex;gap:4px;overflow-x:auto;flex:1}
+nav a{padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--ink);font-weight:500;white-space:nowrap;font-size:15px}
+nav a[aria-current="page"]{background:var(--br);color:var(--bi)}
+main{max-width:760px;margin:auto;padding:28px 18px 56px}
+html.js section.off{display:none}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:18px 20px;margin:0 0 14px}
+.lead{font-size:1.15rem;color:var(--mu)}
+.finder{display:flex;gap:8px;margin:18px 0 10px}
+input[type=search],input[type=number],select{font:inherit;color:var(--ink);background:var(--sf);border:2px solid var(--ln);border-radius:12px;padding:12px 14px;width:100%}
+input[type=search]{font-size:1.2rem;border-color:var(--br)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+button,.chip{font:inherit;font-weight:700;border:0;border-radius:999px;padding:10px 18px;cursor:pointer;background:var(--br);color:var(--bi)}
+.chip{background:var(--sf);color:var(--ink);border:1px solid var(--ln);font-weight:500;padding:6px 14px}
+button.alt{background:var(--sf);color:var(--ink);border:2px solid var(--ln)}
+.verdict{border-left:8px solid;padding:14px 18px;border-radius:12px;margin:0 0 10px}
+.verdict h3{margin:0 0 4px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.verdict p{margin:0}.verdict em{display:block;font-weight:400;font-size:.9rem;color:var(--mu)}
+.s0{background:var(--okb);border-color:var(--ok);color:var(--ok)}.s1{background:var(--wab);border-color:var(--wa);color:var(--wa)}.s2{background:var(--nob);border-color:var(--no);color:var(--no)}
+.verdict p,.verdict h3 span{color:var(--ink)}
+.verdict h3 b{font-weight:800}
+.links a{display:block;text-decoration:none;color:var(--ink);padding:14px 4px;border-top:1px solid var(--ln)}
+.links a:first-child{border-top:0}.links b{display:block;color:var(--br)}
+.grid{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.finder{flex-direction:column}}
+ul.tick,ul.cross{list-style:none;padding:0;margin:0}
+ul.tick li::before{content:"✓ ";color:var(--ok);font-weight:800}
+ul.cross li::before{content:"✕ ";color:var(--no);font-weight:800}
+ul.tick li,ul.cross li{margin:0 0 .4em}
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:0}
+ol.steps li{counter-increment:s;position:relative;padding:0 0 18px 52px}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;background:var(--br);color:var(--bi);display:grid;place-items:center;font-weight:800}
+ol.steps b{display:block}
+details{background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:12px 16px;margin:0 0 8px}
+summary{cursor:pointer;font-weight:700}
+label{display:block;font-weight:700;margin:14px 0 6px}
+.out{font:800 2.4rem "Bricolage Grotesque",sans-serif;color:var(--br);line-height:1}
+.out small{display:block;font:400 .95rem Figtree,sans-serif;color:var(--mu);margin-top:4px}
+.meter{height:18px;background:var(--ln);border-radius:9px;overflow:hidden;margin:12px 0}
+.meter i{display:block;height:100%;background:var(--br);transition:width .3s}
+.note{font-size:14px;color:var(--mu)}
+svg text{font:600 14px Figtree,sans-serif;fill:var(--ink)}
+footer{max-width:760px;margin:auto;padding:0 18px 30px;font-size:14px;color:var(--mu)}
+@media(prefers-reduced-motion:reduce){.meter i{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="warn">Solo para plantas no comestibles. Esta agua no es potable.</div>
+  <div class="bar">
+    <a class="brand" href="#inicio">PlanCo</a>
+    <nav aria-label="Secciones">
+      <a href="#inicio">Plantas</a><a href="#filtro">El filtro</a><a href="#instalar">Instalar</a><a href="#mantener">Mantener</a><a href="#ahorro">Ahorro</a><a href="#seguridad">Seguridad</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section id="inicio">
+  <h1>¿Puedo regar esto con agua de mi lavadora?</h1>
+  <p class="lead">Escribe el nombre común o científico de una planta (hay más de 600 en la lista) y te decimos si puedes regarla con agua gris filtrada.</p>
+  <div class="finder"><input id="q" type="search" placeholder="Ej.: rosal, lechuga, hortensia" aria-label="Nombre de la planta" autocomplete="off"></div>
+  <div class="chips" id="chips"></div>
+  <div id="res" aria-live="polite"></div>
+  <div class="card links">
+    <a href="#instalar"><b>Instalar el filtro</b>Se conecta a la manguera de la lavadora, sin herramientas ni obras.</a>
+    <a href="#mantener"><b>Mantener el filtro</b>Lleva la cuenta de lavados y sabe cuándo cambiar el cartucho.</a>
+    <a href="#ahorro"><b>Calcular mi ahorro</b>Estima cuántos litros reutilizas al mes.</a>
+  </div>
+</section>
+
+<section id="filtro">
+  <h2>El filtro</h2>
+  <p class="lead">Una pieza compacta que se conecta entre la manguera de la lavadora y un recipiente de recolección.</p>
+  <div class="card">
+    <svg viewBox="0 0 640 150" width="100%" role="img" aria-label="La lavadora envía agua al filtro, que la entrega a un recipiente de recolección">
+      <rect x="10" y="30" width="110" height="90" rx="12" fill="none" stroke="var(--mu)" stroke-width="3"/><circle cx="65" cy="75" r="26" fill="none" stroke="var(--mu)" stroke-width="3"/><text x="65" y="140" text-anchor="middle">Lavadora</text>
+      <path d="M120 75H220" stroke="var(--br)" stroke-width="4"/>
+      <rect x="220" y="25" width="200" height="100" rx="30" fill="var(--sf)" stroke="var(--br)" stroke-width="3"/>
+      <rect x="250" y="25" width="30" height="100" fill="#B7C6CB"/><rect x="300" y="25" width="30" height="100" fill="#D9C79A"/><rect x="350" y="25" width="30" height="100" fill="#4B5A5F"/>
+      <text x="320" y="145" text-anchor="middle">Filtro por capas</text>
+      <path d="M420 75H500" stroke="var(--br)" stroke-width="4"/>
+      <path d="M500 40V120H620V40" fill="none" stroke="var(--mu)" stroke-width="3"/><path d="M505 80H615V118H505Z" fill="var(--br)" opacity=".35"/><text x="560" y="145" text-anchor="middle">Recipiente</text>
+    </svg>
+    <p class="note" style="margin:8px 0 0">Esquema referencial del prototipo.</p>
+  </div>
+  <h3>Qué lleva dentro</h3>
+  <div class="card"><ul class="tick">
+    <li><b>Malla</b> que retiene pelusas y sólidos.</li>
+    <li><b>Zeolita</b> que atrapa parte de las partículas disueltas.</li>
+    <li><b>Carbón activado</b> que reduce grasas y olores.</li>
+    <li><b>Cartuchos reemplazables</b> y biodegradables.</li>
+    <li><b>Adaptador de goma con abrazaderas</b> para distintos diámetros de manguera.</li>
+  </ul></div>
+  <div class="grid">
+    <div class="card"><h3>Qué hace</h3><ul class="tick"><li>Es una primera barrera de protección.</li><li>Se instala sin tocar cañerías.</li><li>Permite regar plantas no comestibles.</li></ul></div>
+    <div class="card"><h3>Qué no hace</h3><ul class="cross"><li>No potabiliza el agua.</li><li>No elimina bacterias.</li><li>No hace segura el agua para hortalizas ni frutas.</li></ul></div>
+  </div>
+</section>
+
+<section id="instalar">
+  <h2>Instalar el filtro</h2>
+  <p class="lead">Necesitas unos 10 minutos y las abrazaderas incluidas.</p>
+  <ol class="steps">
+    <li><b>Elige el recipiente</b>Usa uno con tapa, lavable y ubicado cerca de la lavadora.</li>
+    <li><b>Revisa la manguera</b>Mide el diámetro de la manguera de desagüe y elige el adaptador que calza.</li>
+    <li><b>Conecta la entrada</b>Une la manguera de la lavadora a la entrada del filtro, la que tiene la flecha, y aprieta la abrazadera.</li>
+    <li><b>Conecta la salida</b>Lleva la salida del filtro al recipiente o a la manguera de riego.</li>
+    <li><b>Haz una prueba</b>Corre un lavado corto y mira si hay fugas en las uniones.</li>
+    <li><b>Etiqueta el recipiente</b>Escribe “Agua gris: no beber, no usar en alimentos”.</li>
+  </ol>
+  <h3>Si algo falla</h3>
+  <details><summary>Hay una fuga en la unión</summary><p>Aprieta la abrazadera. Si sigue, prueba otro adaptador de goma: el diámetro puede ser distinto.</p></details>
+  <details><summary>El agua sale muy lenta</summary><p>El cartucho puede estar saturado. Revisa la sección <a href="#mantener">Mantener</a>.</p></details>
+  <details><summary>Huele mal</summary><p>Cambia el cartucho y vacía el recipiente. No dejes el agua guardada por varios días.</p></details>
+</section>
+
+<section id="mantener">
+  <h2>Mantener el filtro</h2>
+  <p class="lead">Cambia o limpia el cartucho cada 5 lavados para evitar atascos y malos olores.</p>
+  <div class="card">
+    <div class="out"><span id="n">0</span> de 5<small>lavados desde el último cambio</small></div>
+    <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="5" id="pb"><i id="bar" style="width:0"></i></div>
+    <p id="msg" aria-live="polite"></p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button id="plus">Registré un lavado</button><button class="alt" id="reset">Cambié el cartucho</button></div>
+    <p class="note" style="margin:12px 0 0">Tu conteo queda guardado en este dispositivo.</p>
+  </div>
+  <h3>Señales de que ya toca</h3>
+  <div class="card"><ul class="tick"><li>El agua sale más lento que antes.</li><li>Aparece mal olor en la logia o en el recipiente.</li><li>Ves pelusas o grasa en el agua de salida.</li></ul></div>
+</section>
+
+<section id="ahorro">
+  <h2>Calcula tu ahorro</h2>
+  <p class="lead">Una estimación de cuánta agua potable dejas de usar en riego.</p>
+  <div class="card">
+    <label for="c">Lavados por semana: <span id="cv">4</span></label>
+    <input id="c" type="range" min="1" max="14" value="4" style="width:100%">
+    <label for="l">Agua por lavado</label>
+    <select id="l"><option value="40">40 litros (lavadora eficiente)</option><option value="60" selected>60 litros (promedio)</option><option value="80">80 litros (lavadora antigua)</option></select>
+    <label for="t">Precio del agua ($ por m³, según tu boleta)</label>
+    <input id="t" type="number" min="0" value="1200" inputmode="numeric">
+  </div>
+  <div class="grid">
+    <div class="card"><div class="out" id="o1">0<small>litros reutilizados al mes</small></div></div>
+    <div class="card"><div class="out" id="o2">$0<small>de ahorro aproximado al mes</small></div></div>
+  </div>
+  <p class="note">Supone que recolectas cerca del 80 % del agua y que reemplaza agua potable que hoy usas para regar. Si tu jardín es pequeño, el ahorro real puede ser menor. El precio inicial es solo un valor de ejemplo.</p>
+</section>
+
+<section id="seguridad">
+  <h2>Uso seguro</h2>
+  <div class="grid">
+    <div class="card"><h3>Puedes regar</h3><ul class="tick"><li>Jardines ornamentales.</li><li>Árboles y arbustos no frutales.</li><li>Césped.</li></ul></div>
+    <div class="card"><h3>No puedes usarla en</h3><ul class="cross"><li>Beber ni cocinar.</li><li>Hortalizas, hierbas ni frutales.</li><li>Lavar utensilios o personas.</li></ul></div>
+  </div>
+  <h3>Qué detergente usar</h3>
+  <div class="card"><p>Prefiere detergentes biodegradables, sin cloro ni blanqueadores. Evita los muy alcalinos: pueden dañar el suelo y algunas plantas.</p><p class="note" style="margin:0">Orientación general del prototipo, pendiente de validar con una especialista.</p></div>
+  <h3>Marco legal</h3>
+  <div class="card"><p>En Chile, la Ley N.º 21.075 regula la recolección, el tratamiento y la reutilización de aguas grises, y el Decreto N.º 40 del Ministerio de Salud fija condiciones sanitarias básicas.</p><p class="note" style="margin:0">Este filtro es una primera barrera y no reemplaza un tratamiento certificado.</p></div>
+</section>
+
+</main>
+<footer>Prototipo académico del Equipo 8, IWG-400. Los datos de plantas, detergentes y precios son de ejemplo y deben validarse antes de un uso real.</footer>
+
+<script>
+(function(){
+var L=["Sí puedes regarla","Con cuidado","No la riegues"];
+var H="Se come: el agua gris puede llevar bacterias como E. coli o Salmonella.";
+var P=[
+["Rosal",0,"Riega en la base, sin mojar flores ni hojas."],["Geranio",0,"Evita el encharcamiento: necesita buen drenaje."],["Petunia",0,"Riega al pie de la planta."],["Césped",0,"Riega temprano y no lo pises hasta que se seque."],["Aromo",0,"Árbol ornamental, riego a nivel del suelo."],["Ciprés",0,"Riego a nivel del suelo."],["Jazmín",0,"Riega en la base."],
+["Hortensia",1,"Prefiere suelo ácido. Usa detergente neutro y alterna con agua potable."],["Azalea",1,"Sensible al pH. Alterna con agua potable."],["Camelia",1,"Sensible al pH. Alterna con agua potable."],["Lavanda",1,"Necesita poca agua. No encharques."],["Suculentas",1,"Casi no necesitan riego: el exceso las pudre."],
+["Lechuga",2,H],["Tomate",2,H],["Zanahoria",2,H],["Frutilla",2,H],["Albahaca",2,H],["Cilantro",2,H],["Perejil",2,H],["Menta",2,H],["Limonero",2,H],["Naranjo",2,H],["Palto",2,H],["Manzano",2,H]];
+function add(s,note,list){list.forEach(function(x){var a=x.split("|"),e=[a[0],s,note,a[1],a[2]],i=-1;P.forEach(function(p,k){if(nz(p[0])===nz(a[0]))i=k});i<0?P.push(e):P[i]=e})}
+var A0="Riega a nivel del suelo, sin mojar hojas ni flores.",A1="Nativa y adaptada al clima de Chile: riego moderado, sin encharcar.",C1="Prefiere suelo ácido y es sensible al pH. Usa detergente neutro y alterna con agua potable.",C2="Sensible a sales y al pH. Alterna con agua potable.",C3="Necesita muy poca agua: el exceso la pudre. Riega poco y con buen drenaje.";
+add(0,A0,["Liquidámbar|Liquidambar styraciflua","Árbol de Júpiter / Crespón|Lagerstroemia indica","Pitosporo|Pittosporum tobira","Abelia|Abelia grandiflora","Corona de novia|Spiraea cantoniensis","Cucarda / Hibisco|Hibiscus rosa-sinensis","Retama|Retama sphaerocarpa","Cotoneaster|Cotoneaster pannosus","Eugenia|Syzygium paniculatum","Photinia|Photinia x fraseri","Salvia ornamental|Salvia leucantha","Viburno|Viburnum tinus","Boj|Buxus sempervirens","Abutilon|Abutilon striatum","Duraznillo del cabo|Tecoma capensis","Limpiatubos / Callistemon|Callistemon citrinus","Aromo francés|Acacia retinodes","Hipericón|Hypericum calycinum","Maravilla|Mirabilis jalapa","Agapanto|Agapanthus africanus","Clivia|Clivia miniata","Calla / Lirio de agua|Zantedeschia aethiopica","Acanto|Acanthus mollis","Geranio|Pelargonium hortorum","Gitanilla|Pelargonium peltatum","Petunia|Petunia x hybrida","Alelí|Matthiola incana","Pensamiento|Viola x wittrockiana","Margarita|Leucanthemum vulgare","Clavel|Dianthus caryophyllus","Clavelina|Dianthus barbatus","Lirio de día|Hemerocallis fulva","Caña de indias / Canna|Canna indica","Dalia|Dahlia pinnata","Begonia|Begonia semperflorens","Alegría del hogar / Impatiens|Impatiens walleriana","Vinca|Vinca major","Verbena|Verbena hybrida","Rudbeckia|Rudbeckia hirta","Aquilegia|Aquilegia vulgaris","Iris germánico / Lirio iris|Iris germanica","Copete / Tagetes|Tagetes patula","Cineraria marítima|Jacobaea maritima","Amapola|Papaver rhoeas","Jazmín de leche|Trachelospermum jasminoides","Santa Rita / Bugambilia / Bougainvillea|Bougainvillea glabra","Madreselva|Lonicera japonica","Hiedra común|Hedera helix","Bignonia de invierno|Pyrostegia venusta","Plumbago|Plumbago auriculata","Parra virgen|Parthenocissus tricuspidata","Glicina|Wisteria sinensis","Solano azul|Solanum jasminoides","Rosa trepadora|Rosa sp.","Mandevilla|Mandevilla sanderi","Cobea|Cobaea scandens"]);
+add(0,A1,["Quillay|Quillaja saponaria|n","Litre|Lithraea caustica|n","Espino|Acacia caven|n","Maitén|Maytenus boaria|n","Huingán|Schinus polygamus|n","Belloto del norte|Beilschmiedia miersii|n","Patagua|Crinodendron patagua|n","Radal|Lomatia hirsuta|n","Corontillo|Escallonia pulverulenta|n","Siete camisas|Escallonia rubra|n","Lirio del campo / Alstroemeria|Alstroemeria pelegrina|n"]);
+add(1,C1,["Hortensia|Hydrangea macrophylla","Azalea|Rhododendron simsii","Camelia|Camellia japonica","Copihue|Lapageria rosea|n"]);
+add(1,C2,["Abedul|Betula pendula","Arce japonés|Acer palmatum"]);
+add(1,C3,["Lavanda|Lavandula angustifolia","Puya alpestris|Puya alpestris|n","Chagual / Puya chilensis|Puya chilensis|n","Cactus San Pedro|Echinopsis pachanoi","Mammillaria|Mammillaria sp.","Ágave americano|Agave americana","Echeveria|Echeveria elegans","Kalanchoe|Kalanchoe blossfeldiana","Dedo de topo / Sedum|Sedum morganianum","Lengua de suegra / Sansevieria|Sansevieria trifasciata","Árbol de jade|Crassula ovata","Aeonium|Aeonium arboreum","Planta moneda|Portulacaria afra","Planta fantasma|Graptopetalum paraguayense","Yuca|Yucca aloifolia","Planta del rosario|Senecio rowleyanus","Oreja de burro|Cotyledon orbiculata","Siempreviva|Sempervivum tectorum"]);
+add(2,H,["Nogal|Juglans regia","Limonero|Citrus limon","Naranjo|Citrus sinensis","Damasco|Prunus armeniaca","Olivo|Olea europaea","Almendro|Prunus dulcis","Peumo|Cryptocarya alba|n","Boldo|Peumus boldus|n","Molle|Schinus molle|n","Maqui|Aristotelia chilensis|n","Michay|Berberis darwinii|n","Chañar|Geoffroea decorticans|n","Rosa mosqueta|Rosa rubiginosa","Laurel de olor|Laurus nobilis","Durazno de flor|Prunus persica","Romero|Salvia rosmarinus","Hierbabuena|Mentha spicata","Menta|Mentha piperita","Orégano|Origanum vulgare","Tomillo|Thymus vulgaris","Perejil|Petroselinum crispum","Ciboulette|Allium schoenoprasum","Melisa|Melissa officinalis","Albahaca|Ocimum basilicum","Pasionaria|Passiflora caerulea","Capuchina / Nasturcio|Tropaeolum majus","Tuna|Opuntia ficus-indica","Aloe vera|Aloe vera","Uña de gato / Carpobrotus|Carpobrotus edulis"]);
+var A2="Evita el encharcamiento: los bulbos y tubérculos se pudren con exceso de agua.",C4="Nativa de clima seco: necesita muy poca agua y el exceso pudre el bulbo o la raíz.",H2="Se usa en infusiones o remedios caseros y algunas especies son tóxicas. No la riegues con esta agua.";
+add(0,A2,["Tulipán|Tulipa spp.","Narciso|Narcissus pseudonarcissus","Jacinto|Hyacinthus orientalis","Freesia / Fresia|Freesia refracta","Marimonia / Ranúnculo|Ranunculus asiaticus","Anémona|Anemone coronaria","Gladíolo|Gladiolus x hortulanus","Azucena / Lirio blanco|Lilium candidum","Lilium híbrido|Lilium spp.","Nerine|Nerine bowdenii","Agapantho blanco|Agapanthus africanus 'Albus'","Ixias|Ixia maculata","Sparaxis|Sparaxis tricolor","Crocosmia / Montbretia|Crocosmia x crocosmiiflora","Tritonia|Tritonia crocata","Tigridia / Flor de tigre|Tigridia pavonia","Galanto / Campanilla de nieve|Galanthus nivalis","Muscari / Jacinto de uva|Muscari armeniacum"]);
+add(1,C4,["Añañuca de montaña|Rhodophiala rhodolirion|n","Añañuca roja|Rhodophiala phycelloides|n","Huilli|Leucocoryne bivalvis|n","Cebollín de flor / Huilli blanco|Leucocoryne ixioides|n","Azulillo|Pasithea caerulea|n","Mariposa de campo|Calochortus albus / Alstroemeria spp.|n","Soldadito|Tropaeolum tricolor|n","Rhodophiala / Añañuca amarilla|Rhodophiala bagnoldii|n","Rhodophiala / Añañuca rosada|Rhodophiala ananuca|n","Nolana / Suspiro del campo|Nolana paradoxa|n","Cristaria / Malvilla del campo|Cristaria glaucophylla|n","Argylia / Flor de la jarilla|Argylia radiata|n","Chagualillo|Puya berteroniana|n"]);
+add(1,C3,["Cyclamen / Violeta de los Alpes|Cyclamen persicum","Gazania|Gazania rigens","Portulaca / Flor de seda|Portulaca grandiflora","Hoya / Flor de porcelana|Hoya carnosa","Kalanchoe calandiva|Kalanchoe blossfeldiana 'Calandiva'"]);
+add(1,C1,["Copihue blanco|Lapageria rosea f. albiflora|n"]);
+add(0,A1,["Flor del gallo|Mutisia decurrens|n","Mutisia / Clavel del campo|Mutisia linearifolia|n","Capachito / Topa topa|Calceolaria corymbosa|n","Capachito amarillo|Calceolaria uniflora|n","Ortiga de caballeros / Loasa|Loasa tricolor|n","Fuchsia / Chilco|Fuchsia magellanica|n"]);
+add(0,A0,["Zinnia / Izote|Zinnia elegans","Cosmos|Cosmos bipinnatus","Ilusión / Gipsófila|Gypsophila paniculata","Espuela de galán / Delphinium|Delphinium elatum","Lupino de jardín|Lupinus polyphyllus","Conejito / Antirrino|Antirrhinum majus","Lobelia|Lobelia erinus","Dimorfoteca / Margarita del Cabo|Dimorphotheca ecklonis","Alyssum / Aliso de mar|Lobularia maritima","Statice / Flor de papel|Limonium sinuatum","Celosía / Cresta de gallo|Celosia argentea","Godetia|Clarkia amoena","Clarkia|Clarkia unguiculata","Nigela / Arañuela|Nigella damascena","Campanilla morada / Ipomoea|Ipomoea purpurea","Phlox de jardín|Phlox paniculata","Eschscholzia / Amapola de California|Eschscholzia californica","Coreopsis|Coreopsis grandiflora","Gaillardia|Gaillardia pulchella","Centaurea / Pincel|Centaurea cyanus","Catharanthus / Vinca rosa|Catharanthus roseus","Flor de la pasión de flor roja|Passiflora racemosa","Lantana|Lantana camara","Pentas|Pentas lanceolata","Crossandra|Crossandra infundibuliformis","Mandevilla blanca / Dipladenia|Mandevilla boliviensis","Stephanotis / Jazmín de Madagascar|Stephanotis floribunda","Thunbergia / Ojo de poeta|Thunbergia alata","Allamanda / Copa de oro|Allamanda cathartica","Pelargonio pensamiento|Pelargonium domesticum","Salvia azul / Salvia farinacea|Salvia farinacea","Salvia roja|Salvia splendens","Campanula / Farolito|Campanula medium"]);
+add(2,H,["Amaranthus / Moco de pavo|Amaranthus caudatus","Voqui blanco|Boquila trifoliolata|n"]);
+add(2,H2,["Calendula / Botón de oro|Calendula officinalis","Flor de la culebra|Echium vulgare / Symphytum"]);
+add(2,H,["Acelga|Beta vulgaris var. cicla","Espinaca|Spinacia oleracea","Apio|Apium graveolens","Repollo|Brassica oleracea var. capitata","Coliflor|Brassica oleracea var. botrytis","Brócoli|Brassica oleracea var. italica","Col de Bruselas|Brassica oleracea var. gemmifera","Kale / Col rizada|Brassica oleracea var. sabellica","Betarraga|Beta vulgaris","Rábano|Raphanus sativus","Nabo|Brassica rapa","Cebolla|Allium cepa","Ajo|Allium sativum","Puerro|Allium porrum","Papa|Solanum tuberosum","Camote|Ipomoea batatas","Pimentón|Capsicum annuum","Ají cacho de cabra|Capsicum annuum var. longum","Berenjena|Solanum melongena","Zapallo|Cucurbita maxima","Zapallo italiano|Cucurbita pepo","Pepino|Cucumis sativus","Sandía|Citrullus lanatus","Melón|Cucumis melo","Choclo / Maíz|Zea mays","Poroto|Phaseolus vulgaris","Arveja|Pisum sativum","Haba|Vicia faba","Lenteja|Lens culinaris","Garbanzo|Cicer arietinum","Alcachofa|Cynara scolymus","Espárrago|Asparagus officinalis","Rúcula|Eruca vesicaria","Achicoria|Cichorium intybus","Endibia|Cichorium endivia","Hinojo|Foeniculum vulgare","Cardo|Cynara cardunculus","Cedrón|Aloysia citrodora","Toronjil|Dracocephalum moldavica","Manzanilla|Matricaria chamomilla","Eneldo|Anethum graveolens","Estragón|Artemisia dracunculus","Mejorana|Origanum majorana","Salvia común|Salvia officinalis","Cebollín|Allium fistulosum","Jengibre|Zingiber officinale","Stevia|Stevia rebaudiana","Poleo|Mentha pulegium","Lemongrass|Cymbopogon citratus","Ajedrea|Satureja hortensis","Perifollo|Anthriscus cerefolium","Borraja|Borago officinalis","Anís|Pimpinella anisum","Comino|Cuminum cyminum","Duraznero|Prunus persica","Ciruelo|Prunus domestica","Cerezo|Prunus avium","Guindo|Prunus cerasus","Peral|Pyrus communis","Membrillo|Cydonia oblonga","Higuera|Ficus carica","Granado|Punica granatum","Vid / Parra|Vitis vinifera","Kiwi|Actinidia deliciosa","Frambuesa|Rubus idaeus","Mora|Rubus ulmifolius","Grosella|Ribes rubrum","Arándano|Vaccinium corymbosum","Mandarino|Citrus reticulata","Pomelo|Citrus paradisi","Lima|Citrus aurantiifolia","Kumquat|Fortunella margarita","Chirimoyo|Annona cherimola","Lúcumo|Pouteria lucuma","Papayo|Carica papaya","Plátano / Banano|Musa x paradisiaca","Piña|Ananas comosus","Maracuyá|Passiflora edulis","Mango|Mangifera indica","Guayabo|Psidium guajava","Níspero|Eriobotrya japonica","Caqui|Diospyros kaki","Avellano europeo|Corylus avellana","Castaño|Castanea sativa","Pistachero|Pistacia vera","Macadamia|Macadamia integrifolia","Pecano|Carya illinoinensis","Frutilla chilena|Fragaria chiloensis|n","Murta|Ugni molinae|n","Calafate|Berberis microphylla|n","Arrayán|Luma apiculata|n","Nalca|Gunnera tinctoria|n","Tamarillo|Solanum betaceum","Pitahaya|Hylocereus undatus","Feijoa|Acca sellowiana","Cidra|Citrus medica","Algarrobo|Prosopis chilensis|n","Trigo|Triticum aestivum","Cebada|Hordeum vulgare","Avena|Avena sativa","Quinoa|Chenopodium quinoa","Girasol|Helianthus annuus","Maní|Arachis hypogaea","Alfalfa|Medicago sativa","Sauco|Sambucus nigra","Avellano chileno|Gevuina avellana|n"]);
+add(2,H2,["Ruda|Ruta graveolens","Paico|Dysphania ambrosioides","Matico|Buddleja globosa|n","Valeriana|Valeriana officinalis","Equinácea|Echinacea purpurea","Artemisa|Artemisia absinthium"]);
+add(0,A1,["Canelo|Drimys winteri|n","Lingue|Persea lingue|n","Roble|Nothofagus obliqua|n","Raulí|Nothofagus alpina|n","Coigüe|Nothofagus dombeyi|n","Lenga|Nothofagus pumilio|n","Ñirre|Nothofagus antarctica|n","Alerce|Fitzroya cupressoides|n","Ciprés de la cordillera|Austrocedrus chilensis|n","Olivillo|Aextoxicon punctatum|n","Tepa|Laureliopsis philippiana|n","Ulmo|Eucryphia cordifolia|n","Notro|Embothrium coccineum|n","Tineo|Weinmannia trichosperma|n","Mañío|Podocarpus saligna|n","Lleuque|Prumnopitys andina|n","Pelú|Sophora microphylla|n","Mayu|Sophora macrocarpa|n","Palqui|Cestrum parqui|n","Chilca|Baccharis linearis|n","Colliguay|Colliguaja odorifera|n","Quila|Chusquea quila|n","Peralillo|Azara dentata|n","Bollén|Kageneckia oblonga|n","Huañil|Proustia pyrifolia|n","Trevo|Trevoa trinervis|n","Crucero|Colletia spinosissima|n","Mitique|Podanthus mitiqui|n","Lilén|Azara celastrina|n","Botellita|Mitraria coccinea|n","Coralito|Berberidopsis corallina|n","Voqui colorado|Cissus striata|n","Quilineja|Luzuriaga radicans|n","Mariposita|Schizanthus pinnatus|n","Totora|Schoenoplectus californicus|n"]);
+add(0,A0,["Jacarandá|Jacaranda mimosifolia","Plátano oriental|Platanus x acerifolia","Tilo|Tilia cordata","Álamo|Populus nigra","Sauce llorón|Salix babylonica","Fresno|Fraxinus excelsior","Castaño de Indias|Aesculus hippocastanum","Magnolio|Magnolia grandiflora","Eucalipto|Eucalyptus globulus","Pino insigne|Pinus radiata","Cedro del Himalaya|Cedrus deodara","Ciprés macrocarpa|Cupressus macrocarpa","Ciprés de Leyland|x Cuprocyparis leylandii","Tuya|Thuja occidentalis","Acacia blanca|Robinia pseudoacacia","Acacia de Constantinopla|Albizia julibrissin","Arce negundo|Acer negundo","Arce plateado|Acer saccharinum","Olmo|Ulmus minor","Roble europeo|Quercus robur","Encina|Quercus ilex","Alcornoque|Quercus suber","Tulipero|Liriodendron tulipifera","Cerezo de flor|Prunus serrulata","Ciruelo de flor|Prunus cerasifera","Catalpa|Catalpa bignonioides","Ginkgo|Ginkgo biloba","Árbol del cielo|Ailanthus altissima","Paraíso|Melia azedarach","Kiri|Paulownia tomentosa","Brachychiton|Brachychiton populneus","Palo borracho|Ceiba speciosa","Tipa|Tipuana tipu","Gleditsia|Gleditsia triacanthos","Casuarina|Casuarina cunninghamiana","Abeto|Abies alba","Picea|Picea abies","Secuoya|Sequoia sempervirens","Metasecuoya|Metasequoia glyptostroboides","Cedro del Líbano|Cedrus libani","Palma chilena|Jubaea chilensis|n","Palma canaria|Phoenix canariensis","Washingtonia|Washingtonia robusta","Palma de abanico|Trachycarpus fortunei","Palma areca|Dypsis lutescens","Palma kentia|Howea forsteriana","Palmera enana|Chamaerops humilis","Cica|Cycas revoluta","Palma pigmea|Phoenix roebelenii","Palma cola de pescado|Caryota mitis","Palma rafia|Rhapis excelsa","Palma botella|Hyophorbe lagenicaulis","Lila|Syringa vulgaris","Forsitia|Forsythia x intermedia","Weigela|Weigela florida","Deutzia|Deutzia gracilis","Filadelfo|Philadelphus coronarius","Mahonia|Mahonia aquifolium","Nandina|Nandina domestica","Ligustro|Ligustrum lucidum","Ligustrina|Ligustrum japonicum","Aucuba|Aucuba japonica","Evónimo|Euonymus japonicus","Laurel rosa|Nerium oleander","Buddleja|Buddleja davidii","Hibisco de Siria|Hibiscus syriacus","Tamarisco|Tamarix gallica","Lonicera arbustiva|Lonicera nitida","Escalonia|Escallonia x langleyensis","Hebe|Hebe speciosa","Callicarpa|Callicarpa bodinieri","Cornus|Cornus alba","Cornejo|Cornus sanguinea","Spiraea japonesa|Spiraea japonica","Potentilla|Dasiphora fruticosa","Ceanothus|Ceanothus thyrsiflorus","Cistus|Cistus ladanifer","Jara|Cistus albidus","Aromo de Australia|Acacia dealbata","Bola de nieve|Viburnum opulus","Calicanto|Chimonanthus praecox","Genista|Cytisus scoparius","Retama de olor|Spartium junceum","Pascua|Euphorbia pulcherrima","Cestrum|Cestrum nocturnum","Brunfelsia|Brunfelsia pauciflora","Clerodendro|Clerodendrum thomsoniae","Ixora|Ixora coccinea","Pyracantha|Pyracantha coccinea","Berberis ornamental|Berberis thunbergii","Chaenomeles|Chaenomeles japonica","Ribes ornamental|Ribes sanguineum","Osmanthus|Osmanthus fragrans","Daphne|Daphne odora","Clemátide|Clematis montana","Jazmín oficinal|Jasminum officinale","Jazmín de invierno|Jasminum nudiflorum","Rosa Banksia|Rosa banksiae","Dondiego de día|Ipomoea tricolor","Cissus|Cissus rhombifolia","Trompeta china|Campsis radicans","Bignonia rosa|Podranea ricasoliana","Aristolochia|Aristolochia elegans","Solandra|Solandra maxima","Hardenbergia|Hardenbergia violacea","Madreselva europea|Lonicera periclymenum","Falso jazmín|Gelsemium sempervirens","Aster|Aster novi-belgii","Helenio|Helenium autumnale","Echinops|Echinops ritro","Eryngium|Eryngium planum","Hosta|Hosta sieboldiana","Heuchera|Heuchera sanguinea","Peonía|Paeonia lactiflora","Fisostegia|Physostegia virginiana","Lythrum|Lythrum salicaria","Linaria|Linaria purpurea","Saponaria|Saponaria officinalis","Digital|Digitalis purpurea","Malva real|Alcea rosea","Lavatera|Lavatera trimestris","Hibisco herbáceo|Hibiscus moscheutos","Crisantemo|Chrysanthemum x morifolium","Gerbera|Gerbera jamesonii","Anthemis|Anthemis tinctoria","Achillea|Achillea millefolium","Bergenia|Bergenia crassifolia","Brunnera|Brunnera macrophylla","Pulmonaria|Pulmonaria officinalis","Primavera|Primula vulgaris","Prímula|Primula x polyantha","Campanula de hoja de durazno|Campanula persicifolia","Liatris|Liatris spicata","Kniphofia|Kniphofia uvaria","Phormium|Phormium tenax","Cortaderia|Cortaderia selloana","Pennisetum|Pennisetum setaceum","Miscanthus|Miscanthus sinensis","Festuca azul|Festuca glauca","Carex|Carex oshimensis","Ophiopogon|Ophiopogon japonicus","Liriope|Liriope muscari","Lirio del valle|Convallaria majalis","Aspidistra|Aspidistra elatior","Fatsia|Fatsia japonica","Strelitzia|Strelitzia reginae","Anthurium|Anthurium andraeanum","Spathiphyllum|Spathiphyllum wallisii","Dracaena|Dracaena marginata","Cordyline|Cordyline australis","Filodendro|Philodendron hederaceum","Potus|Epipremnum aureum","Ficus benjamina|Ficus benjamina","Ficus elastica|Ficus elastica","Cinta|Chlorophytum comosum","Tradescantia|Tradescantia zebrina","Trébol blanco|Trifolium repens","Dichondra|Dichondra repens","Pasto kikuyo|Cenchrus clandestinus","Pasto bermuda|Cynodon dactylon","Pasto ovillo|Dactylis glomerata","Festuca alta|Festuca arundinacea","Ballica|Lolium perenne","Vinca menor|Vinca minor","Ajuga|Ajuga reptans","Lysimachia|Lysimachia nummularia","Pachysandra|Pachysandra terminalis","Aster anual|Callistephus chinensis","Cleome|Cleome hassleriana","Salpiglosis|Salpiglossis sinuata","Nemesia|Nemesia strumosa","Diascia|Diascia barberae","Bacopa|Sutera cordata","Brachyscome|Brachyscome iberidifolia","Tithonia|Tithonia rotundifolia","Helichrysum|Xerochrysum bracteatum","Mimulus|Mimulus guttatus","Nicotiana|Nicotiana alata","Heliotropo|Heliotropium arborescens","Lunaria|Lunaria annua","Violeta|Viola odorata","Calceolaria híbrida|Calceolaria x herbeohybrida","Sinningia|Sinningia speciosa","Violeta africana|Streptocarpus ionanthus","Orquídea mariposa|Phalaenopsis amabilis","Cymbidium|Cymbidium hybridum","Guzmania|Guzmania lingulata","Rosa de té|Rosa x odorata","Rosa floribunda|Rosa floribunda","Rosa miniatura|Rosa chinensis var. minima","Rosa rugosa|Rosa rugosa","Rosa china|Rosa chinensis","Nenúfar|Nymphaea alba","Papiro|Cyperus papyrus"]);
+add(1,C1,["Rododendro|Rhododendron x hybridum","Gardenia|Gardenia jasminoides","Magnolio de flor|Magnolia x soulangeana","Pieris|Pieris japonica","Skimmia|Skimmia japonica","Kalmia|Kalmia latifolia","Erica|Erica carnea","Brezo|Calluna vulgaris","Hortensia trepadora|Hydrangea petiolaris","Hortensia paniculada|Hydrangea paniculata","Camelia sasanqua|Camellia sasanqua"]);
+add(1,C2,["Helecho de Boston|Nephrolepis exaltata","Helecho macho|Dryopteris filix-mas","Helecho nido|Asplenium nidus","Arce rojo|Acer rubrum","Haya|Fagus sylvatica","Calathea|Calathea orbifolia","Maranta|Maranta leuconeura","Begonia rex|Begonia rex","Peperomia|Peperomia obtusifolia","Pilea|Pilea peperomioides","Fittonia|Fittonia albivenis"]);
+add(1,C3,["Cactus barril|Echinocactus grusonii","Opuntia ornamental|Opuntia microdasys","Cereus|Cereus peruvianus","Cactus de Navidad|Schlumbergera truncata","Cactus de Pascua|Hatiora gaertneri","Euphorbia candelabro|Euphorbia ingens","Euphorbia trigona|Euphorbia trigona","Pachypodium|Pachypodium lamerei","Haworthia|Haworthia fasciata","Gasteria|Gasteria carinata","Lithops|Lithops salicola","Crassula perforata|Crassula perforata","Adenium|Adenium obesum","Dyckia|Dyckia brevifolia","Aloe arborescens|Aloe arborescens","Aloe variegata|Aloe variegata","Agave attenuata|Agave attenuata","Yucca gigantea|Yucca gigantea","Nolina|Beaucarnea recurvata","Dasylirion|Dasylirion wheeleri","Pachyphytum|Pachyphytum oviferum","Delosperma|Delosperma cooperi","Euphorbia milii|Euphorbia milii","Zamioculca|Zamioculcas zamiifolia","Kalanchoe tomentosa|Kalanchoe tomentosa","Kalanchoe daigremontiana|Kalanchoe daigremontiana","Lavanda francesa|Lavandula stoechas","Santolina|Santolina chamaecyparissus","Perovskia|Salvia yangii","Lampranthus|Lampranthus spectabilis","Sedum acre|Sedum acre","Cleistocactus|Cleistocactus strausii","Parodia|Parodia magnifica","Gymnocalycium|Gymnocalycium mihanovichii","Rebutia|Rebutia minuscula","Epiphyllum|Epiphyllum oxypetalum"]);
+add(1,C4,["Quisco|Echinopsis chiloensis|n","Sandillón|Eriosyce curvispina|n","Quisquito|Eriosyce ceratistes|n"]);
+function nz(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim()}
+function card(p){return '<div class="verdict s'+p[1]+'"><h3><span>'+p[0]+(p[3]?'<em>'+p[3]+(p[4]?', nativa de Chile':'')+'</em>':'')+'</span><b>'+L[p[1]]+'</b></h3><p>'+p[2]+'</p></div>'}
+var q=document.getElementById("q"),res=document.getElementById("res"),chips=document.getElementById("chips");
+["Rosal","Lechuga","Hortensia","Césped"].forEach(function(n){var b=document.createElement("button");b.className="chip";b.textContent=n;b.onclick=function(){q.value=n;find()};chips.appendChild(b)});
+function find(){var v=nz(q.value);if(!v){res.innerHTML="";return}
+var m=P.filter(function(p){return nz(p[0]).indexOf(v)>-1}),m2=P.filter(function(p){return nz(p[0]).indexOf(v)<0&&nz(p[3]||"").indexOf(v)>-1});m=m.concat(m2).slice(0,6);
+res.innerHTML=m.length?m.map(card).join(""):'<div class="verdict s2"><h3><span>'+q.value.replace(/[<>&]/g,"")+'</span><b>Sin datos</b></h3><p>Aún no tenemos esta planta en la lista. Por precaución, no la riegues con esta agua hasta confirmarlo.</p></div>'}
+q.addEventListener("input",find);
+var V=["inicio","filtro","instalar","mantener","ahorro","seguridad"];
+function show(h){if(V.indexOf(h)<0)h="inicio";
+V.forEach(function(v){var el=document.getElementById(v);if(v!==h)el.classList.add("off");else el.classList.remove("off")});
+document.querySelectorAll("nav a").forEach(function(a){a.getAttribute("href")==="#"+h?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});window.scrollTo(0,0)}
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;var h=a.getAttribute("href").slice(1);if(V.indexOf(h)<0)return;e.preventDefault();show(h);try{history.replaceState(null,"","#"+h)}catch(x){}});
+window.addEventListener("hashchange",function(){show(location.hash.slice(1))});
+document.documentElement.classList.add("js");show(location.hash.slice(1));
+var n=0;try{n=parseInt(localStorage.getItem("planco-lavados"),10)||0}catch(e){}
+function mant(){var s=Math.min(n,5);document.getElementById("n").textContent=s;document.getElementById("bar").style.width=s*20+"%";document.getElementById("pb").setAttribute("aria-valuenow",s);
+document.getElementById("msg").textContent=s<3?"Tu filtro está en buen estado.":s<5?"Pronto toca limpiar o cambiar el cartucho.":"Cambia o limpia el cartucho antes del próximo lavado.";
+try{localStorage.setItem("planco-lavados",s)}catch(e){}}
+document.getElementById("plus").onclick=function(){n=Math.min(n+1,5);mant()};
+document.getElementById("reset").onclick=function(){n=0;mant()};mant();
+var c=document.getElementById("c"),l=document.getElementById("l"),t=document.getElementById("t");
+function calc(){document.getElementById("cv").textContent=c.value;var m=c.value*l.value*0.8*4.33;
+document.getElementById("o1").innerHTML=Math.round(m).toLocaleString("es-CL")+"<small>litros reutilizados al mes</small>";
+document.getElementById("o2").innerHTML="$"+Math.round(m/1000*(+t.value||0)).toLocaleString("es-CL")+"<small>de ahorro aproximado al mes</small>"}
+[c,l,t].forEach(function(e){e.addEventListener("input",calc)});calc();
+})();
+</script>
+</body>
+</html>
